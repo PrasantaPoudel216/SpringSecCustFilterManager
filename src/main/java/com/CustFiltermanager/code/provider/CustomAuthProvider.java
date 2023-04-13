@@ -8,14 +8,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.stereotype.Component;
 
 import com.CustFiltermanager.code.token.MyCustAuthToken;
 
+@Component
 public class CustomAuthProvider implements AuthenticationProvider{
 	
 	
-	@Autowired
-	UserDetailsService userDetailsService;
 	
 	@Value("${secret-key}")
 	String secretkey;
@@ -25,7 +25,8 @@ public class CustomAuthProvider implements AuthenticationProvider{
 		// TODO Auto-generated method stub
 		String userName=authentication.getName();
 		
-		
+		System.out.println(userName+"from header");
+		System.out.println(secretkey+"from propertiesdss");
 		if(secretkey.equals(userName)) {
 		return new MyCustAuthToken(null, null,null);
 		}

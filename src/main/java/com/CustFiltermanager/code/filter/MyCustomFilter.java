@@ -18,9 +18,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.stereotype.Component;
 
 import com.CustFiltermanager.code.token.MyCustAuthToken;
 
+
+@Component
 public class MyCustomFilter  implements Filter {
 	
 	public static Logger logger=LoggerFactory.getLogger(MyCustomFilter.class);
@@ -36,7 +39,7 @@ public class MyCustomFilter  implements Filter {
 		}
 		///taking request
 		HttpServletRequest req= (HttpServletRequest) request;
-		String authObj=req.getHeader("key");
+		String authObj=req.getHeader("secret-key");
 		try {
 		//creating authenticate object
 		MyCustAuthToken authenticate=new MyCustAuthToken(authObj,null);
@@ -51,13 +54,20 @@ public class MyCustomFilter  implements Filter {
 		securityContext.setAuthentication(authenticationobj);
 		SecurityContextHolder.setContext(securityContext);
 		}
+		
+	   
 		}catch(Exception e)
 		{
 			e.printStackTrace();
 			if(logger.isDebugEnabled()) {
 				logger.debug(MyCustomFilter.class+"dofilter"+e.getLocalizedMessage());
 			}
+	
 		}
+		
+		chain.doFilter(request, response);
 	}
+	
+	
 
 }

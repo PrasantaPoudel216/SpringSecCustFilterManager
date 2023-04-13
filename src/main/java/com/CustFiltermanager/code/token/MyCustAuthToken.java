@@ -4,6 +4,8 @@ import java.util.Collection;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.stereotype.Component;
+
 
 public class MyCustAuthToken extends UsernamePasswordAuthenticationToken {
 
@@ -17,4 +19,7 @@ public class MyCustAuthToken extends UsernamePasswordAuthenticationToken {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+	
+	
 }
