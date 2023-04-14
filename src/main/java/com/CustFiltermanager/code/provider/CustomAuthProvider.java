@@ -25,8 +25,6 @@ public class CustomAuthProvider implements AuthenticationProvider{
 		// TODO Auto-generated method stub
 		String userName=authentication.getName();
 		
-		System.out.println(userName+"from header");
-		System.out.println(secretkey+"from propertiesdss");
 		if(secretkey.equals(userName)) {
 		return new MyCustAuthToken(null, null,null);
 		}
